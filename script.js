@@ -105,6 +105,7 @@ const quizData = {
 let currentQuiz = [];
 let currentIndex = 0;
 let score = 0;
+let previousPage = document.referrer; // Get the previous page URL
 
 function startQuiz(level) {
     currentQuiz = [...quizData[level]];
@@ -146,5 +147,9 @@ function nextQuestion() {
 }
 
 function goBack() {
-  window.history.back();
+  if (previousPage) {
+    window.location.href = previousPage; // Go back to the previous page
+  } else {
+    window.history.back(); // Fallback: go back using history
+  }
 }
