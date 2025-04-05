@@ -146,10 +146,9 @@ function nextQuestion() {
 }
 
 function goBack() {
-  if (window.history.length == 0) {
+  if (window.history.length > 1) {
     window.history.back(); // Go back to the previous page
   } else {
-    // Fallback: if no history, redirect to a default page or homepage
     window.location.href='https://tosinchukwu.github.io/pyquiz/'; 
   }
 }
