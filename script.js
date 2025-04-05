@@ -147,9 +147,11 @@ function nextQuestion() {
 }
 
 function goBack() {
-  if (previousPage) {
-    window.location.href = previousPage; // Go back to the previous page
+  if (window.history.length > 1) {
+    window.history.back(); // Go back to the previous page
   } else {
-    window.history.back(); // Fallback: go back using history
+    // Fallback: if no history, redirect to a default page or homepage
+    window.location.href = 'https://your-default-url.com'; 
   }
 }
+
