@@ -5,6 +5,14 @@ body {
     background-color: blue;
 }
 
+p {
+  color: blue;
+  }
+
+h1 {
+   color: violet;
+   }
+
 .hidden {
     display: none; /* Hide elements by default */
 }
