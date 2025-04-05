@@ -144,12 +144,3 @@ function nextQuestion() {
     currentIndex++;
     loadQuestion();
 }
-
-function goBack() {
-  if (window.history.length > 1) {
-    window.history.back(); // Go back to the previous page
-  } else {
-    window.location.href='https://tosinchukwu.github.io/pyquiz/'; 
-  }
-}
-
