@@ -129,6 +129,7 @@ function loadQuestion() {
     document.getElementById("options").innerHTML = q.options.map(
         (opt) => `<button onclick="checkAnswer('${opt.charAt(0)}')">${opt}</button>`
     ).join("");
+    
 }
 
 function checkAnswer(selected) {
@@ -142,4 +143,8 @@ function checkAnswer(selected) {
 function nextQuestion() {
     currentIndex++;
     loadQuestion();
+}
+
+function goBack() {
+  window.history.back();
 }
