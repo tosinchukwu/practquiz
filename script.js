@@ -151,7 +151,7 @@ function goBack() {
     window.history.back(); // Go back to the previous page
   } else {
     // Fallback: if no history, redirect to a default page or homepage
-    window.location.href = 'https://your-default-url.com'; 
+    window.location.href = 'https://tosinchukwu.github.io/pyquiz/'; 
   }
 }
 
