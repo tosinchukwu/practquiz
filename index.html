@@ -19,6 +19,12 @@
     <div id="quiz-container" class="hidden">
         <h2 id="question"></h2>
         <div id="options"></div>
+
+        <!-- ✅ Add Progress Bar Here -->
+    <div id="progress-bar-container" style="width: 100%; background: #eee; border-radius: 10px; margin: 20px 0;">
+        <div id="progress-bar" style="height: 20px; width: 0%; background: limegreen; border-radius: 10px; transition: width 0.3s ease;"></div>
+    </div>
+        
         <button onclick="nextQuestion()">Next</button>
         <p id="progress">Progress..</p>
     </div>
