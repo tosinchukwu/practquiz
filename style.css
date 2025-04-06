@@ -19,7 +19,7 @@ h1 {
 
 .container {
     width: 80%;
-    max-width: 200px;
+    max-width: 250px;
     margin: 0 auto; /* Center horizontally */
     padding: 50px;
     background: #FFC0CB;
