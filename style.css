@@ -44,3 +44,23 @@ button {
 button:hover {
     background-color: #00FF00; /* Lime */
 }
+
+#share-buttons {
+  margin-top: 20px;
+}
+
+#share-buttons button {
+  margin: 5px;
+  padding: 10px 15px;
+  font-size: 14px;
+  background-color: #1DA1F2; /* Twitter blue */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#share-buttons button:last-child {
+  background-color: #1877F2; /* Facebook blue */
+}
+
