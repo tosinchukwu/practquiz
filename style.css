@@ -20,13 +20,20 @@ h1 {
 .container {
     width: 80%;
     max-width: 200px;
-    margin: 250px;
+    margin: 0 auto; /* Center horizontally */
     padding: 50px;
     background: #FFC0CB;
     box-shadow: 0px 0px 10px gray;
     border-radius: 10px;
     color: white; /* text color inside container */
+    
+    /* To center vertically */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
+
 
 button {
     display: inline-block; /* allow side-by-side buttons */
