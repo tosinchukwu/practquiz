@@ -144,3 +144,18 @@ function nextQuestion() {
     currentIndex++;
     loadQuestion();
 }
+
+function shareToTwitter() {
+  const score = finalScore || 0; // Replace with your actual score variable
+  const tweet = `I just scored ${score} points in the Python Quiz Adventure! 🐍🏆 Try to beat my score!`;
+  const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`;
+  window.open(url, '_blank');
+}
+
+function shareToFacebook() {
+  const score = finalScore || 0;
+  const quote = `I scored ${score} points in the Python Quiz Adventure! Think you can do better? 🧠🐍`;
+  const url = `https://www.facebook.com/sharer/sharer.php?u=https://pquiz-ten.vercel.app&quote=${encodeURIComponent(quote)}`;
+  window.open(url, '_blank');
+}
+document.getElementById('share-buttons').classList.remove('hidden');
