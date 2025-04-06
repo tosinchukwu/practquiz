@@ -113,6 +113,7 @@ function startQuiz(level) {
     currentQuiz = [...quizData[level]];
     currentIndex = 0;
     score = 0;
+    correctAnswers = 0;
 
     // Hide the main menu and show the quiz container
     document.querySelector(".container").classList.add("hidden");
@@ -146,24 +147,24 @@ function checkAnswer(selected) {
     // Check if the selected option is correct
     if (selected === currentQuiz[currentIndex].answer) {
         score++;
+        handleCorrectAnswer();
     }
-
-function handleCorrectAnswer() {
-    correctAnswers++;
-    updateProgressBar();
-}
-function updateProgressBar() {
-    const percent = (correctAnswers / totalQuestions) * 100;
-    document.getElementById("progress-bar").style.width = percent + "%";
-    document.getElementById("progress-text").textContent = `${correctAnswers} / ${totalQuestions} correct`;
-
-}
 
     // Move to the next question
     currentIndex++;
     loadQuestion();
 }
 
+function handleCorrectAnswer() {
+    correctAnswers++;
+    updateProgressBar();
+}
+
+function updateProgressBar() {
+    const percent = (correctAnswers / totalQuestions) * 100;
+    document.getElementById("progress-bar").style.width = percent + "%";
+    document.getElementById("progress-text").textContent = `${correctAnswers} / ${totalQuestions} correct`;
+}
 
 function shareToTwitter() {
     // Share the score on Twitter
