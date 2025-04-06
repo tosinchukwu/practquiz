@@ -35,7 +35,6 @@ h1 {
     transform: translate(-50%, -50%);
 }
 
-
 button {
     display: inline-block; /* allow side-by-side buttons */
     margin: 10px 5px;
@@ -51,6 +50,7 @@ button {
 
 button:hover {
     background-color: #00FF00; /* Lime */
+    color: #000080; /* Dark Blue for better contrast */
 }
 
 #share-buttons {
@@ -71,7 +71,35 @@ button:hover {
 #share-buttons button:last-child {
   background-color: #1877F2; /* Facebook blue */
 }
+
 #progress-bar {
   transition: width 0.3s ease-in-out;
 }
 
+#progress-bar-container {
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #f0f0f0; /* Slight background contrast for the bar container */
+}
+
+#progress-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: #4B0082; /* Indigo for better contrast */
+    margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+    body {
+        font-size: 14px; /* Smaller font size for mobile */
+    }
+
+    .container {
+        padding: 30px;
+        width: 90%;
+    }
+
+    button {
+        font-size: 14px; /* Smaller button font size */
+    }
+}
