@@ -125,11 +125,8 @@ function loadQuestion() {
         document.getElementById("quiz-container").innerHTML = `
             <h2>Game Over! Score: ${score}/${currentQuiz.length}</h2>
             <button onclick="location.reload()">Restart</button>
-            <div id="share-buttons" class="hidden">
-                <button onclick="shareToTwitter()">Share to Twitter</button>
-                <button onclick="shareToFacebook()">Share to Facebook</button>
-            </div>
-        `;
+              // Show the share buttons after the game ends
+        document.getElementById('share-buttons').classList.remove('hidden');
         return;
     }
 
