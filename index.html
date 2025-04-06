@@ -18,9 +18,37 @@
         <button onclick="startQuiz('Advanced')">Advanced</button>
     </div>
 
-     <!-- New Section with Description and Instructions -->
-    <div class="intro-section">
-        <h1>A fun interactive quiz game to test your Python knowledge! 🐍✨</h1>
+         <div id="quiz-container" class="hidden">
+        <h2 id="question"></h2>
+        <div id="options"></div>
+
+        <!-- Progress Bar -->
+        <div id="progress-bar-container" style="width: 100%; background: #eee; border-radius: 10px; margin: 20px 0;">
+            <div id="progress-bar" style="height: 20px; width: 0%; background: limegreen; border-radius: 10px; transition: width 0.3s ease;"></div>
+        </div>
+
+        <!-- Next Button removed because we are handling next question via script -->
+        <p id="progress-text">0 / 30 correct</p>
+
+
+    <!-- Share Buttons (Initially Hidden) -->
+    <div id="share-buttons" class="hidden">
+        <button onclick="shareToTwitter()">Share to Twitter</button>
+        <button onclick="shareToFacebook()">Share to Facebook</button>
+    </div>
+
+    <script src="script.js"></script>
+
+   
+
+
+    <p style="color:green; position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); margin: 10px;">
+      Designed By: Tosinchukwu
+    </p>
+
+    <div>
+        <p>
+<h1>A fun interactive quiz game to test your Python knowledge! 🐍✨</h1>
 
         <h2>🚀 How to Play</h2>
         <ol>
@@ -36,34 +64,7 @@
             <li>✅ Progress Bar/Text.</li>
             <li>✅ Share your score on Twitter!</li>
         </ul>
+         </p>
     </div>
-
-    <div id="quiz-container" class="hidden">
-        <h2 id="question"></h2>
-        <div id="options"></div>
-
-    
-
-        <!-- Progress Bar -->
-        <div id="progress-bar-container" style="width: 100%; background: #eee; border-radius: 10px; margin: 20px 0;">
-            <div id="progress-bar" style="height: 20px; width: 0%; background: limegreen; border-radius: 10px; transition: width 0.3s ease;"></div>
-        </div>
-
-        <!-- Next Button removed because we are handling next question via script -->
-        <p id="progress-text">0 / 30 correct</p>
-    </div>
-
-    <!-- Share Buttons (Initially Hidden) -->
-    <div id="share-buttons" class="hidden">
-        <button onclick="shareToTwitter()">Share to Twitter</button>
-        <button onclick="shareToFacebook()">Share to Facebook</button>
-    </div>
-
-    <script src="script.js"></script>
-
-    <p style="color:green; position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); margin: 10px;">
-      Designed By: Tosinchukwu
-    </p>
-
 </body>
 </html>
