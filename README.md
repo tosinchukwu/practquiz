@@ -8,13 +8,14 @@
 A fun interactive quiz game to test your Python knowledge! 🐍✨
 
 ## 🚀 How to Play
-1. Visit: **[Python Quiz Page](https://pquiz-ten.vercel.app)**
+1. Visit: **[Python Quiz Page](https://practquiz.vercel.app)**
 2. Select a difficulty level.
 3. Answer Python-related questions.
 
 ## 📌 Features
 - ✅ Beginner, Intermediate & Advanced questions.
 - ✅ Timer mode (optional).
+- ✅ Progress Bar/Text.
 - ✅ Share your score on Twitter!
 
 ---
