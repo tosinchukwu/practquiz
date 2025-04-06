@@ -54,32 +54,44 @@ button:hover {
 }
 
 #share-buttons {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 #share-buttons button {
-  margin: 5px;
-  padding: 10px 15px;
-  font-size: 14px;
-  background-color: #1DA1F2; /* Twitter blue */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+    margin: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
+    background-color: #1DA1F2; /* Twitter blue */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 #share-buttons button:last-child {
-  background-color: #1877F2; /* Facebook blue */
+    background-color: #1877F2; /* Facebook blue */
 }
 
 #progress-bar {
-  transition: width 0.3s ease-in-out;
+    transition: width 0.3s ease-in-out;
 }
 
 #progress-bar-container {
-    padding: 5px;
+    width: 100%; /* Ensures the container is not wider than the screen */
+    max-width: 100%; /* Prevents any overflow */
+    background: #eee;
     border-radius: 10px;
-    background-color: #f0f0f0; /* Slight background contrast for the bar container */
+    margin: 20px 0;
+    box-sizing: border-box; /* Includes padding in the width */
+    padding: 5px;
+}
+
+#progress-bar {
+    height: 20px;
+    width: 0%; /* This will dynamically change */
+    background: limegreen;
+    border-radius: 10px;
+    transition: width 0.3s ease;
 }
 
 #progress-text {
@@ -102,4 +114,11 @@ button:hover {
     button {
         font-size: 14px; /* Smaller button font size */
     }
+}
+
+/* Preventing any horizontal overflow on the page */
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
