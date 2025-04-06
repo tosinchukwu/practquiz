@@ -8,6 +8,27 @@
 </head>
 <body>
 
+    <!-- New Section with Description and Instructions -->
+    <div class="intro-section">
+        <h1>A fun interactive quiz game to test your Python knowledge! 🐍✨</h1>
+
+        <h2>🚀 How to Play</h2>
+        <ol>
+            <li>Visit: <a href="https://practquiz.vercel.app" target="_blank">Python Quiz Page</a></li>
+            <li>Select a difficulty level.</li>
+            <li>Answer Python-related questions.</li>
+        </ol>
+
+        <h2>📌 Features</h2>
+        <ul>
+            <li>✅ Beginner, Intermediate & Advanced questions.</li>
+            <li>✅ Timer mode (optional).</li>
+            <li>✅ Progress Bar/Text.</li>
+            <li>✅ Share your score on Twitter!</li>
+        </ul>
+    </div>
+
+    <!-- Existing Quiz Interface -->
     <div class="container">
         <marquee><h1>🏰 Python Quiz Adventure 🏰</h1></marquee>
         <p>Select a difficulty level:</p>
@@ -29,12 +50,12 @@
         <p id="progress-text">0 / 30 correct</p>
     </div>
 
-     <!-- Share Buttons (Initially Hidden) -->
+    <!-- Share Buttons (Initially Hidden) -->
     <div id="share-buttons" class="hidden">
         <button onclick="shareToTwitter()">Share to Twitter</button>
         <button onclick="shareToFacebook()">Share to Facebook</button>
     </div>
-    
+
     <script src="script.js"></script>
 
     <p style="color:green; position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); margin: 10px;">
