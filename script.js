@@ -161,6 +161,6 @@ function shareToTwitter() {
 function shareToFacebook() {
     // Share the score on Facebook
     const quote = `I scored ${score} points in the Python Quiz Adventure! Think you can do better? 🧠🐍`;
-    const url = `https://www.facebook.com/sharer/sharer.php?u=https://pquiz-ten.vercel.app&quote=${encodeURIComponent(quote)}`;
+    const url = `https://www.facebook.com/sharer/sharer.php?u=https://practquiz.vercel.app&quote=${encodeURIComponent(quote)}`;
     window.open(url, '_blank');
 }
