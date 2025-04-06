@@ -105,6 +105,8 @@ const quizData = {
 let currentQuiz = [];
 let currentIndex = 0;
 let score = 0;
+let correctAnswers = 0;
+const totalQuestions = 10; // Or set dynamically
 
 function startQuiz(level) {
     // Initialize the quiz based on the selected difficulty level
@@ -146,10 +148,22 @@ function checkAnswer(selected) {
         score++;
     }
 
+function handleCorrectAnswer() {
+    correctAnswers++;
+    updateProgressBar();
+}
+function updateProgressBar() {
+    const percent = (correctAnswers / totalQuestions) * 100;
+    document.getElementById("progress-bar").style.width = percent + "%";
+    document.getElementById("progress-text").textContent = `${correctAnswers} / ${totalQuestions} correct`;
+
+}
+
     // Move to the next question
     currentIndex++;
     loadQuestion();
 }
+
 
 function shareToTwitter() {
     // Share the score on Twitter
