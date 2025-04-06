@@ -107,55 +107,61 @@ let currentIndex = 0;
 let score = 0;
 
 function startQuiz(level) {
+    // Initialize the quiz based on the selected difficulty level
     currentQuiz = [...quizData[level]];
     currentIndex = 0;
     score = 0;
+
+    // Hide the main menu and show the quiz container
     document.querySelector(".container").classList.add("hidden");
     document.getElementById("quiz-container").classList.remove("hidden");
+
     loadQuestion();
 }
 
 function loadQuestion() {
+    // If all questions have been answered, show the final score and a restart button
     if (currentIndex >= currentQuiz.length) {
         document.getElementById("quiz-container").innerHTML = `
             <h2>Game Over! Score: ${score}/${currentQuiz.length}</h2>
             <button onclick="location.reload()">Restart</button>
+            <div id="share-buttons" class="hidden">
+                <button onclick="shareToTwitter()">Share to Twitter</button>
+                <button onclick="shareToFacebook()">Share to Facebook</button>
+            </div>
         `;
         return;
     }
 
+    // Load the current question and its options
     let q = currentQuiz[currentIndex];
     document.getElementById("question").innerText = q.question;
     document.getElementById("options").innerHTML = q.options.map(
         (opt) => `<button onclick="checkAnswer('${opt.charAt(0)}')">${opt}</button>`
     ).join("");
-    
 }
 
 function checkAnswer(selected) {
+    // Check if the selected option is correct
     if (selected === currentQuiz[currentIndex].answer) {
         score++;
     }
-    currentIndex++;
-    loadQuestion();
-}
 
-function nextQuestion() {
+    // Move to the next question
     currentIndex++;
     loadQuestion();
 }
 
 function shareToTwitter() {
-  const score = finalScore || 0; // Replace with your actual score variable
-  const tweet = `I just scored ${score} points in the Python Quiz Adventure! 🐍🏆 Try to beat my score!`;
-  const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`;
-  window.open(url, '_blank');
+    // Share the score on Twitter
+    const tweet = `I just scored ${score} points in the Python Quiz Adventure! 🐍🏆 Try to beat my score!`;
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`;
+    window.open(url, '_blank');
 }
 
 function shareToFacebook() {
-  const score = finalScore || 0;
-  const quote = `I scored ${score} points in the Python Quiz Adventure! Think you can do better? 🧠🐍`;
-  const url = `https://www.facebook.com/sharer/sharer.php?u=https://pquiz-ten.vercel.app&quote=${encodeURIComponent(quote)}`;
-  window.open(url, '_blank');
+    // Share the score on Facebook
+    const quote = `I scored ${score} points in the Python Quiz Adventure! Think you can do better? 🧠🐍`;
+    const url = `https://www.facebook.com/sharer/sharer.php?u=https://pquiz-ten.vercel.app&quote=${encodeURIComponent(quote)}`;
+    window.open(url, '_blank');
 }
-document.getElementById('share-buttons').classList.remove('hidden');
