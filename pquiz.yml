@@ -1,8 +1,8 @@
 project:
   name: Python Quiz Adventure
   description: A fun Python quiz game built with HTML, CSS, and JavaScript.
-  repository: https://github.com/tosinchukwu/pquiz
-  website: https://pquiz-ten.vercel.app
+  repository: https://github.com/tosinchukwu/practquiz
+  website: https://practquiz.vercel.app
   tags:
     - quiz
     - javascript
