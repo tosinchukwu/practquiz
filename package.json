@@ -10,7 +10,11 @@
     "type": "git",
     "url": "git+https://github.com/tosinchukwu/practquiz.git"
   },
-  "keywords": ["python", "quiz", "interactive"],
+  "keywords": [
+    "python",
+    "quiz",
+    "interactive"
+  ],
   "author": "Tosinchukwu",
   "license": "MIT",
   "type": "commonjs",
@@ -20,6 +24,10 @@
   "homepage": "https://github.com/tosinchukwu/practquiz#readme",
   "dependencies": {
     "bootstrap": "^5.3.5",
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "serve": "^14.2.4"
+  },
+  "bin": {
+    "practquiz": "./start.js"
   }
 }
