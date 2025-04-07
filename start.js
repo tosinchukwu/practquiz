@@ -13,5 +13,5 @@ exec(`npx serve "${servePath}"`, (err, stdout, stderr) => {
         return;
     }
     console.log(stdout);
-    console.error(stderr);
+    if (stderr) console.error(stderr);
 });
