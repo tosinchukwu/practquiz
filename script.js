@@ -170,37 +170,40 @@ function loadQuestion() {
 function checkAnswer(selected) {
   console.log("Checking answer: " + selected);
   let buttons = document.querySelectorAll('#options button');
-  if (selected === currentQuiz[currentIndex].answer) {
-    score++;
-    correctAnswers++; // Increment correct answers
-    buttons.forEach(button => {
-      if (button.innerText === currentQuiz[currentIndex].answer) {
-        button.style.backgroundColor = "green";  // Correct answer
-      }
-    });
-  } else {
-    buttons.forEach(button => {
-      if (button.innerText === currentQuiz[currentIndex].answer) {
-        button.style.backgroundColor = "green";  // Show correct answer
-      }
-    });
+  const correctAnswer = currentQuiz[currentIndex].answer;
+
+  // Check if the selected answer is correct
+  if (selected === correctAnswer) {
+    score++; // Increase score for correct answer
+    correctAnswers++; // Increase the number of correct answers
+    console.log("Correct answer! Score: " + score);
   }
+
+  // Highlight the correct answer in green, and the wrong answer in red
+  buttons.forEach(button => {
+    if (button.innerText.charAt(0) === correctAnswer) {
+      button.style.backgroundColor = "green";  // Correct answer
+    } else if (button.innerText.charAt(0) !== selected && button.innerText.charAt(0) === correctAnswer) {
+      button.style.backgroundColor = "green"; // Show correct answer even if the user picks the wrong one
+    }
+  });
+
+  // Move to the next question
   currentIndex++;
-  updateProgressBar();
   loadQuestion();
 }
 
 function updateProgressBar() {
-  const totalQuestions = currentQuiz.length;
-  const percent = Math.min(((currentIndex) / totalQuestions) * 100, 100);  // Calculate percentage based on actual questions answered
+  const totalQuestions = currentQuiz.length; // Total questions
+  const percent = Math.min(((currentIndex + 1) / totalQuestions) * 100, 100);  // Calculate percentage based on actual questions
   document.getElementById("progress-bar").style.width = percent + "%";  // Update the progress bar width
-  document.getElementById("progress-text").textContent = `${currentIndex} / ${totalQuestions} answered`;  // Update the text with the number of answered questions
+  document.getElementById("progress-text").textContent = `${currentIndex + 1} / ${totalQuestions} answered`;  // Update the text with the number of answered questions
 }
 
 function endQuiz() {
   // Hide the quiz container and show the end screen
   document.getElementById('quiz-container').style.display = 'none';
-  
+
   // Update the end screen with the score details
   document.getElementById('end-screen').innerHTML = `
     <h2>Game Over!</h2>
@@ -216,7 +219,6 @@ function endQuiz() {
   // Show the share buttons after the game ends
   document.getElementById('share-buttons').classList.remove('hidden');
 }
-
 
 function retryQuiz() {
   // Reload the page or restart the quiz
