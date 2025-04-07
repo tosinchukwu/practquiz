@@ -228,3 +228,5 @@ function shareToFacebook() {
     const url = `https://www.facebook.com/sharer/sharer.php?u=https://practquiz.vercel.app&quote=${encodeURIComponent(quote)}`;
     window.open(url, '_blank');
 }
+// Export functions to be used by others
+module.exports = { startQuiz, checkAnswer };
