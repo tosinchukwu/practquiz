@@ -89,16 +89,18 @@ button:hover {
 #progress-bar {
     height: 20px;
     width: 0%; /* This will dynamically change */
-    background: limegreen;
+    height: 20px;
+    background: #4caf50;
     border-radius: 10px;
     transition: width 0.3s ease;
 }
 
 #progress-text {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
     color: #4B0082; /* Indigo for better contrast */
     margin-top: 10px;
+    text-align: center;
 }
 
 @media (max-width: 600px) {

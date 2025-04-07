@@ -97,20 +97,25 @@ const quizData = {
 ]
 };
 
-const { startQuiz, checkAnswer } = require('practquiz');  // Import the functions from practquiz module
-
 let currentQuiz = [];
 let currentIndex = 0;
 let score = 0;
 let correctAnswers = 0;
 let timer;
-let timeLeft = 300; // Set the timer to 5 minutes (300 seconds)
+let timeLeft = 300; // Default to 5 minutes
 let isTimerActive = false;
 
 function startQuiz(level) {
   console.log("Starting quiz...");
   // Initialize the quiz based on the selected difficulty level
   currentQuiz = [...quizData[level]];
+
+  // Check if there are questions available for the selected level
+  if (!currentQuiz || currentQuiz.length === 0) {
+    alert("No questions available for this level.");
+    return; // Exit the function if no questions are available
+  }
+
   currentIndex = 0;
   score = 0;
   correctAnswers = 0;
@@ -126,10 +131,11 @@ function startQuiz(level) {
     clearInterval(timer);
   }
 
-  // Start the timer countdown
-  timeLeft = 300; // Reset time for each new quiz
+  // Set timer duration based on the difficulty level
+  timeLeft = level === "Beginner" ? 300 : level === "Intermediate" ? 240 : 180; // Adjust time for each level
   document.getElementById('time').innerText = timeLeft; // Display initial time
 
+  // Start the timer countdown
   timer = setInterval(function() {
     timeLeft--;
     document.getElementById('time').innerText = timeLeft; // Update timer display
@@ -157,33 +163,38 @@ function loadQuestion() {
   let q = currentQuiz[currentIndex];
   document.getElementById("question").innerText = q.question;
   document.getElementById("options").innerHTML = q.options.map(
-    (opt) => `<button onclick="checkAnswer('${opt.charAt(0)}')">${opt}</button>`
+    (opt) => `<button onclick="checkAnswer('${opt}')">${opt}</button>`
   ).join("");
 }
 
 function checkAnswer(selected) {
   console.log("Checking answer: " + selected);
-  // Check if the selected option is correct
+  let buttons = document.querySelectorAll('#options button');
   if (selected === currentQuiz[currentIndex].answer) {
     score++;
-    handleCorrectAnswer();
+    correctAnswers++; // Increment correct answers
+    buttons.forEach(button => {
+      if (button.innerText === currentQuiz[currentIndex].answer) {
+        button.style.backgroundColor = "green";  // Correct answer
+      }
+    });
+  } else {
+    buttons.forEach(button => {
+      if (button.innerText === currentQuiz[currentIndex].answer) {
+        button.style.backgroundColor = "green";  // Show correct answer
+      }
+    });
   }
-
-  // Move to the next question
   currentIndex++;
+  updateProgressBar();
   loadQuestion();
 }
 
-function handleCorrectAnswer() {
-  correctAnswers++;
-  updateProgressBar();
-}
-
 function updateProgressBar() {
-  const totalQuestions = currentQuiz.length; // Dynamically set total questions based on quiz level
-  const percent = Math.min(((currentIndex + 1) / totalQuestions) * 100, 100);  // Calculate percentage based on actual questions
+  const totalQuestions = currentQuiz.length;
+  const percent = Math.min(((currentIndex) / totalQuestions) * 100, 100);  // Calculate percentage based on actual questions answered
   document.getElementById("progress-bar").style.width = percent + "%";  // Update the progress bar width
-  document.getElementById("progress-text").textContent = `${currentIndex + 1} / ${totalQuestions} answered`;  // Update the text with the number of answered questions
+  document.getElementById("progress-text").textContent = `${currentIndex} / ${totalQuestions} answered`;  // Update the text with the number of answered questions
 }
 
 function endQuiz() {
@@ -191,6 +202,7 @@ function endQuiz() {
   document.getElementById('quiz-container').style.display = 'none';
   document.getElementById('end-screen').innerHTML = `
     <h2>Time's up! Your score: ${score}</h2>
+    <h3>Correct Answers: ${correctAnswers}</h3>
     <button onclick="retryQuiz()">Retry</button>
     <button onclick="goToMainMenu()">Main Menu</button>
     <button onclick="saveScore()">Save Score</button>
