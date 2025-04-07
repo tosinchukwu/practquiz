@@ -200,18 +200,23 @@ function updateProgressBar() {
 function endQuiz() {
   // Hide the quiz container and show the end screen
   document.getElementById('quiz-container').style.display = 'none';
+  
+  // Update the end screen with the score details
   document.getElementById('end-screen').innerHTML = `
-    <h2>Time's up! Your score: ${score}</h2>
-    <h3>Correct Answers: ${correctAnswers}</h3>
+    <h2>Game Over!</h2>
+    <h3>Your score: ${score} / ${currentQuiz.length}</h3>
+    <h4>Correct Answers: ${correctAnswers}</h4>
     <button onclick="retryQuiz()">Retry</button>
     <button onclick="goToMainMenu()">Main Menu</button>
     <button onclick="saveScore()">Save Score</button>
   `;
+  
   document.getElementById('end-screen').style.display = 'block';
 
   // Show the share buttons after the game ends
   document.getElementById('share-buttons').classList.remove('hidden');
 }
+
 
 function retryQuiz() {
   // Reload the page or restart the quiz
