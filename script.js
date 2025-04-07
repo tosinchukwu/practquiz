@@ -150,12 +150,7 @@ function startQuiz(level) {
 function loadQuestion() {
   // If all questions have been answered, show the final score and a restart button
   if (currentIndex >= currentQuiz.length) {
-    document.getElementById("quiz-container").innerHTML = `
-      <h2>Game Over! Score: ${score}/${currentQuiz.length}</h2>
-      <button onclick="location.reload()">Restart</button>
-    `;
-    // Show the share buttons after the game ends
-    document.getElementById('share-buttons').classList.remove('hidden');
+    endQuiz();
     return;
   }
 
@@ -165,6 +160,8 @@ function loadQuestion() {
   document.getElementById("options").innerHTML = q.options.map(
     (opt) => `<button onclick="checkAnswer('${opt}')">${opt}</button>`
   ).join("");
+
+  updateProgressBar();
 }
 
 function checkAnswer(selected) {
@@ -181,16 +178,18 @@ function checkAnswer(selected) {
 
   // Highlight the correct answer in green, and the wrong answer in red
   buttons.forEach(button => {
-    if (button.innerText.charAt(0) === correctAnswer) {
+    if (button.innerText === correctAnswer) {
       button.style.backgroundColor = "green";  // Correct answer
-    } else if (button.innerText.charAt(0) !== selected && button.innerText.charAt(0) === correctAnswer) {
-      button.style.backgroundColor = "green"; // Show correct answer even if the user picks the wrong one
+    } else if (button.innerText === selected && selected !== correctAnswer) {
+      button.style.backgroundColor = "red"; // Wrong answer
     }
   });
 
-  // Move to the next question
-  currentIndex++;
-  loadQuestion();
+  // Move to the next question after a short delay
+  setTimeout(() => {
+    currentIndex++;
+    loadQuestion();
+  }, 1000); // 1-second delay for user to see answer highlight
 }
 
 function updateProgressBar() {
@@ -208,12 +207,12 @@ function endQuiz() {
   document.getElementById('end-screen').innerHTML = `
     <h2>Game Over!</h2>
     <h3>Your score: ${score} / ${currentQuiz.length}</h3>
-    <h4>Correct Answers: ${correctAnswers}</h4>
+    <h4>Correct Answers: ${correctAnswers} / ${currentQuiz.length}</h4> <!-- Correct answers shown -->
     <button onclick="retryQuiz()">Retry</button>
     <button onclick="goToMainMenu()">Main Menu</button>
     <button onclick="saveScore()">Save Score</button>
   `;
-  
+
   document.getElementById('end-screen').style.display = 'block';
 
   // Show the share buttons after the game ends
@@ -221,7 +220,7 @@ function endQuiz() {
 }
 
 function retryQuiz() {
-  // Reload the page or restart the quiz
+  // Reload the page to restart the quiz and reset the timer
   location.reload();
 }
 
