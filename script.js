@@ -183,9 +183,9 @@ function handleCorrectAnswer() {
 }
 
 function updateProgressBar() {
-    const percent = (correctAnswers / totalQuestions) * 100;
-    document.getElementById("progress-bar").style.width = percent + "%";
-    document.getElementById("progress-text").textContent = `${correctAnswers} / ${totalQuestions} correct`;
+    const percent = ((currentIndex + 1) / totalQuestions) * 100;  // Calculate the percentage of questions answered
+    document.getElementById("progress-bar").style.width = percent + "%";  // Update the progress bar width
+    document.getElementById("progress-text").textContent = `${currentIndex + 1} / ${totalQuestions} answered`;  // Update the text with the number of answered questions
 }
 
 // Optional function to end the quiz when time's up
