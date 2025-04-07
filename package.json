@@ -1,18 +1,18 @@
 {
   "name": "practquiz",
   "version": "1.0.0",
-  "description": "![pquiz](https://github.com/user-attachments/assets/949d5cd2-e4a3-49bb-8e90-32b6f6901b0f)",
+  "description": "A Python quiz app for learning and testing Python knowledge interactively",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "http-server ."
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tosinchukwu/practquiz.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["python", "quiz", "interactive"],
+  "author": "Tosinchukwu",
+  "license": "MIT",
   "type": "commonjs",
   "bugs": {
     "url": "https://github.com/tosinchukwu/practquiz/issues"
@@ -20,7 +20,6 @@
   "homepage": "https://github.com/tosinchukwu/practquiz#readme",
   "dependencies": {
     "bootstrap": "^5.3.5",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "http-server": "^14.1.1"
   }
 }
