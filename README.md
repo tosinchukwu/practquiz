@@ -20,3 +20,9 @@ A fun interactive quiz game to test your Python knowledge! 🐍✨
 
 ---
 Enjoy the game and happy coding! 🚀🐍
+
+---
+To use the Python Quiz Adventure in your project, run:
+
+```bash
+npm install practquiz
