@@ -111,7 +111,6 @@ let timer;
 let timeLeft = 30; // Set the timer to 30 seconds
 let isTimerActive = false;
 
-
 function startQuiz(level) {
     // Initialize the quiz based on the selected difficulty level
     currentQuiz = [...quizData[level]];
@@ -124,6 +123,25 @@ function startQuiz(level) {
     document.getElementById("quiz-container").classList.remove("hidden");
 
     loadQuestion();
+
+    // Reset the timer if it's already running
+    if (timer) {
+        clearInterval(timer);
+    }
+
+    // Start the timer countdown
+    timeLeft = 30; // Reset time for each new quiz
+    document.getElementById('time').innerText = timeLeft; // Display initial time
+
+    timer = setInterval(function() {
+        timeLeft--;
+        document.getElementById('time').innerText = timeLeft; // Update timer display
+        if (timeLeft <= 0) {
+            clearInterval(timer); // Stop the timer
+            alert("Time's up! The quiz is over.");
+            endQuiz(); // Function to handle the end of the quiz
+        }
+    }, 1000); // Update every second
 }
 
 function loadQuestion() {
@@ -147,42 +165,6 @@ function loadQuestion() {
     ).join("");
 }
 
-function startQuiz(difficulty) {
-    // Reset the timer if it's already running
-    if (timer) {
-        clearInterval(timer);
-    }
-
-    // Start the timer countdown
-    timeLeft = 30; // Reset time for each new quiz
-    document.getElementById('time').innerText = timeLeft; // Display initial time
-
-    timer = setInterval(function() {
-        timeLeft--;
-        document.getElementById('time').innerText = timeLeft; // Update timer display
-        if (timeLeft <= 0) {
-            clearInterval(timer); // Stop the timer
-            alert("Time's up! The quiz is over.");
-            endQuiz(); // Function to handle the end of the quiz (optional)
-        }
-    }, 1000); // Update every second
-}
-
-// Optional function to end the quiz when time's up
-function endQuiz() {
-    // You can implement logic here to show results, hide the quiz, etc.
-    document.getElementById('quiz-container').style.display = 'none';
-    document.getElementById('share-buttons').style.display = 'block'; // Show the share buttons
-}
-
-// If you want to toggle the timer (e.g., optional feature to disable or enable), you can add a button or checkbox for that.
-function toggleTimer() {
-    isTimerActive = !isTimerActive;
-    if (isTimerActive) {
-        startQuiz(); // Start timer if enabled
-    } else {
-        clearInterval(timer); // Stop timer if disabled
-    }
 function checkAnswer(selected) {
     // Check if the selected option is correct
     if (selected === currentQuiz[currentIndex].answer) {
@@ -204,6 +186,22 @@ function updateProgressBar() {
     const percent = (correctAnswers / totalQuestions) * 100;
     document.getElementById("progress-bar").style.width = percent + "%";
     document.getElementById("progress-text").textContent = `${correctAnswers} / ${totalQuestions} correct`;
+}
+
+// Optional function to end the quiz when time's up
+function endQuiz() {
+    document.getElementById('quiz-container').style.display = 'none';
+    document.getElementById('share-buttons').style.display = 'block'; // Show the share buttons
+}
+
+// Function to toggle the timer (optional feature to enable or disable the timer)
+function toggleTimer() {
+    isTimerActive = !isTimerActive;
+    if (isTimerActive) {
+        startQuiz(currentLevel); // Start the quiz and timer if enabled, passing the current level
+    } else {
+        clearInterval(timer); // Stop the timer if disabled
+    }
 }
 
 function shareToTwitter() {
