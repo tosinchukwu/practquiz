@@ -106,10 +106,10 @@ let currentQuiz = [];
 let currentIndex = 0;
 let score = 0;
 let correctAnswers = 0;
-const totalQuestions = 10; // Or set dynamically
 let timer;
-let timeLeft = 30; // Set the timer to 30 seconds
+let timeLeft = 300; // Set the timer to 5 minutes (300 seconds)
 let isTimerActive = false;
+const totalQuestions = 10; // This can be dynamically set based on the quiz level
 
 function startQuiz(level) {
     // Initialize the quiz based on the selected difficulty level
@@ -130,7 +130,7 @@ function startQuiz(level) {
     }
 
     // Start the timer countdown
-    timeLeft = 30; // Reset time for each new quiz
+    timeLeft = 300; // Reset time for each new quiz
     document.getElementById('time').innerText = timeLeft; // Display initial time
 
     timer = setInterval(function() {
@@ -151,7 +151,6 @@ function loadQuestion() {
             <h2>Game Over! Score: ${score}/${currentQuiz.length}</h2>
             <button onclick="location.reload()">Restart</button>
         `;
-
         // Show the share buttons after the game ends
         document.getElementById('share-buttons').classList.remove('hidden');
         return;
@@ -188,20 +187,37 @@ function updateProgressBar() {
     document.getElementById("progress-text").textContent = `${currentIndex + 1} / ${totalQuestions} answered`;  // Update the text with the number of answered questions
 }
 
-// Optional function to end the quiz when time's up
 function endQuiz() {
+    // Hide the quiz container and show the end screen
     document.getElementById('quiz-container').style.display = 'none';
-    document.getElementById('share-buttons').style.display = 'block'; // Show the share buttons
+    document.getElementById('end-screen').innerHTML = `
+        <h2>Time's up! Your score: ${score}</h2>
+        <button onclick="retryQuiz()">Retry</button>
+        <button onclick="goToMainMenu()">Main Menu</button>
+        <button onclick="saveScore()">Save Score</button>
+    `;
+    document.getElementById('end-screen').style.display = 'block';
+
+    // Show the share buttons after the game ends
+    document.getElementById('share-buttons').classList.remove('hidden');
 }
 
-// Function to toggle the timer (optional feature to enable or disable the timer)
-function toggleTimer() {
-    isTimerActive = !isTimerActive;
-    if (isTimerActive) {
-        startQuiz(currentLevel); // Start the quiz and timer if enabled, passing the current level
-    } else {
-        clearInterval(timer); // Stop the timer if disabled
-    }
+function retryQuiz() {
+    // Reload the page or restart the quiz
+    location.reload();
+}
+
+function goToMainMenu() {
+    // Hide quiz and end screen, show main menu
+    document.getElementById('quiz-container').style.display = 'none';
+    document.getElementById('end-screen').style.display = 'none';
+    document.querySelector(".container").classList.remove("hidden");
+}
+
+// Save the score (for example, save in localStorage or to a database)
+function saveScore() {
+    localStorage.setItem('quizScore', score); // Saving score in localStorage
+    alert('Your score has been saved!');
 }
 
 function shareToTwitter() {
