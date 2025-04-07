@@ -97,10 +97,8 @@ const quizData = {
 ]
 };
 
-const { startQuiz, checkAnswer } = require('practquiz');
+const { startQuiz, checkAnswer } = require('practquiz');  // Import the functions from practquiz module
 
-startQuiz();
-checkAnswer('A');
 let currentQuiz = [];
 let currentIndex = 0;
 let score = 0;
@@ -110,127 +108,127 @@ let timeLeft = 300; // Set the timer to 5 minutes (300 seconds)
 let isTimerActive = false;
 
 function startQuiz(level) {
-    // Initialize the quiz based on the selected difficulty level
-    currentQuiz = [...quizData[level]];
-    currentIndex = 0;
-    score = 0;
-    correctAnswers = 0;
+  console.log("Starting quiz...");
+  // Initialize the quiz based on the selected difficulty level
+  currentQuiz = [...quizData[level]];
+  currentIndex = 0;
+  score = 0;
+  correctAnswers = 0;
 
-    // Hide the main menu and show the quiz container
-    document.querySelector(".container").classList.add("hidden");
-    document.getElementById("quiz-container").classList.remove("hidden");
+  // Hide the main menu and show the quiz container
+  document.querySelector(".container").classList.add("hidden");
+  document.getElementById("quiz-container").classList.remove("hidden");
 
-    loadQuestion();
+  loadQuestion();
 
-    // Reset the timer if it's already running
-    if (timer) {
-        clearInterval(timer);
+  // Reset the timer if it's already running
+  if (timer) {
+    clearInterval(timer);
+  }
+
+  // Start the timer countdown
+  timeLeft = 300; // Reset time for each new quiz
+  document.getElementById('time').innerText = timeLeft; // Display initial time
+
+  timer = setInterval(function() {
+    timeLeft--;
+    document.getElementById('time').innerText = timeLeft; // Update timer display
+    if (timeLeft <= 0) {
+      clearInterval(timer); // Stop the timer
+      alert("Time's up! The quiz is over.");
+      endQuiz(); // Function to handle the end of the quiz
     }
-
-    // Start the timer countdown
-    timeLeft = 300; // Reset time for each new quiz
-    document.getElementById('time').innerText = timeLeft; // Display initial time
-
-    timer = setInterval(function() {
-        timeLeft--;
-        document.getElementById('time').innerText = timeLeft; // Update timer display
-        if (timeLeft <= 0) {
-            clearInterval(timer); // Stop the timer
-            alert("Time's up! The quiz is over.");
-            endQuiz(); // Function to handle the end of the quiz
-        }
-    }, 1000); // Update every second
+  }, 1000); // Update every second
 }
 
 function loadQuestion() {
-    // If all questions have been answered, show the final score and a restart button
-    if (currentIndex >= currentQuiz.length) {
-        document.getElementById("quiz-container").innerHTML = `
-            <h2>Game Over! Score: ${score}/${currentQuiz.length}</h2>
-            <button onclick="location.reload()">Restart</button>
-        `;
-        // Show the share buttons after the game ends
-        document.getElementById('share-buttons').classList.remove('hidden');
-        return;
-    }
+  // If all questions have been answered, show the final score and a restart button
+  if (currentIndex >= currentQuiz.length) {
+    document.getElementById("quiz-container").innerHTML = `
+      <h2>Game Over! Score: ${score}/${currentQuiz.length}</h2>
+      <button onclick="location.reload()">Restart</button>
+    `;
+    // Show the share buttons after the game ends
+    document.getElementById('share-buttons').classList.remove('hidden');
+    return;
+  }
 
-    // Load the current question and its options
-    let q = currentQuiz[currentIndex];
-    document.getElementById("question").innerText = q.question;
-    document.getElementById("options").innerHTML = q.options.map(
-        (opt) => `<button onclick="checkAnswer('${opt.charAt(0)}')">${opt}</button>`
-    ).join("");
+  // Load the current question and its options
+  let q = currentQuiz[currentIndex];
+  document.getElementById("question").innerText = q.question;
+  document.getElementById("options").innerHTML = q.options.map(
+    (opt) => `<button onclick="checkAnswer('${opt.charAt(0)}')">${opt}</button>`
+  ).join("");
 }
 
 function checkAnswer(selected) {
-    // Check if the selected option is correct
-    if (selected === currentQuiz[currentIndex].answer) {
-        score++;
-        handleCorrectAnswer();
-    }
+  console.log("Checking answer: " + selected);
+  // Check if the selected option is correct
+  if (selected === currentQuiz[currentIndex].answer) {
+    score++;
+    handleCorrectAnswer();
+  }
 
-    // Move to the next question
-    currentIndex++;
-    loadQuestion();
+  // Move to the next question
+  currentIndex++;
+  loadQuestion();
 }
 
 function handleCorrectAnswer() {
-    correctAnswers++;
-    updateProgressBar();
+  correctAnswers++;
+  updateProgressBar();
 }
 
 function updateProgressBar() {
-    const totalQuestions = currentQuiz.length; // Dynamically set total questions based on quiz level
-    const percent = Math.min(((currentIndex + 1) / totalQuestions) * 100, 100);  // Calculate percentage based on actual questions
-    document.getElementById("progress-bar").style.width = percent + "%";  // Update the progress bar width
-    document.getElementById("progress-text").textContent = `${currentIndex + 1} / ${totalQuestions} answered`;  // Update the text with the number of answered questions
+  const totalQuestions = currentQuiz.length; // Dynamically set total questions based on quiz level
+  const percent = Math.min(((currentIndex + 1) / totalQuestions) * 100, 100);  // Calculate percentage based on actual questions
+  document.getElementById("progress-bar").style.width = percent + "%";  // Update the progress bar width
+  document.getElementById("progress-text").textContent = `${currentIndex + 1} / ${totalQuestions} answered`;  // Update the text with the number of answered questions
 }
 
 function endQuiz() {
-    // Hide the quiz container and show the end screen
-    document.getElementById('quiz-container').style.display = 'none';
-    document.getElementById('end-screen').innerHTML = `
-        <h2>Time's up! Your score: ${score}</h2>
-        <button onclick="retryQuiz()">Retry</button>
-        <button onclick="goToMainMenu()">Main Menu</button>
-        <button onclick="saveScore()">Save Score</button>
-    `;
-    document.getElementById('end-screen').style.display = 'block';
+  // Hide the quiz container and show the end screen
+  document.getElementById('quiz-container').style.display = 'none';
+  document.getElementById('end-screen').innerHTML = `
+    <h2>Time's up! Your score: ${score}</h2>
+    <button onclick="retryQuiz()">Retry</button>
+    <button onclick="goToMainMenu()">Main Menu</button>
+    <button onclick="saveScore()">Save Score</button>
+  `;
+  document.getElementById('end-screen').style.display = 'block';
 
-    // Show the share buttons after the game ends
-    document.getElementById('share-buttons').classList.remove('hidden');
+  // Show the share buttons after the game ends
+  document.getElementById('share-buttons').classList.remove('hidden');
 }
 
 function retryQuiz() {
-    // Reload the page or restart the quiz
-    location.reload();
+  // Reload the page or restart the quiz
+  location.reload();
 }
 
 function goToMainMenu() {
-    // Hide quiz and end screen, show main menu
-    document.getElementById('quiz-container').style.display = 'none';
-    document.getElementById('end-screen').style.display = 'none';
-    document.querySelector(".container").classList.remove("hidden");
+  // Hide quiz and end screen, show main menu
+  document.getElementById('quiz-container').style.display = 'none';
+  document.getElementById('end-screen').style.display = 'none';
+  document.querySelector(".container").classList.remove("hidden");
 }
 
 // Save the score (for example, save in localStorage or to a database)
 function saveScore() {
-    localStorage.setItem('quizScore', score); // Saving score in localStorage
-    alert('Your score has been saved!');
+  localStorage.setItem('quizScore', score); // Saving score in localStorage
+  alert('Your score has been saved!');
 }
 
 function shareToTwitter() {
-    // Share the score on Twitter
-    const tweet = `I just scored ${score} points in the Python Quiz Adventure! 🐍🏆 Try to beat my score!`;
-    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`;
-    window.open(url, '_blank');
+  // Share the score on Twitter
+  const tweet = `I just scored ${score} points in the Python Quiz Adventure! 🐍🏆 Try to beat my score!`;
+  const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`;
+  window.open(url, '_blank');
 }
 
 function shareToFacebook() {
-    // Share the score on Facebook
-    const quote = `I scored ${score} points in the Python Quiz Adventure! Think you can do better? 🧠🐍`;
-    const url = `https://www.facebook.com/sharer/sharer.php?u=https://practquiz.vercel.app&quote=${encodeURIComponent(quote)}`;
-    window.open(url, '_blank');
+  // Share the score on Facebook
+  const quote = `I scored ${score} points in the Python Quiz Adventure! Think you can do better? 🧠🐍`;
+  const url = `https://www.facebook.com/sharer/sharer.php?u=https://practquiz.vercel.app&quote=${encodeURIComponent(quote)}`;
+  window.open(url, '_blank');
 }
-// Export functions to be used by others
-module.exports = { startQuiz, checkAnswer };
