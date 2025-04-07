@@ -97,8 +97,6 @@ const quizData = {
 ]
 };
 
-const { startQuiz, checkAnswer } = require('practquiz');  // Import the functions from practquiz module
-
 let currentQuiz = [];
 let currentIndex = 0;
 let score = 0;
@@ -111,6 +109,12 @@ function startQuiz(level) {
   console.log("Starting quiz...");
   // Initialize the quiz based on the selected difficulty level
   currentQuiz = [...quizData[level]];
+    
+  // Check if there are questions available for the selected level
+  if (!currentQuiz || currentQuiz.length === 0) {
+    alert("No questions available for this level.");
+    return; // Exit the function if no questions are available
+  }
   currentIndex = 0;
   score = 0;
   correctAnswers = 0;
@@ -163,16 +167,25 @@ function loadQuestion() {
 
 function checkAnswer(selected) {
   console.log("Checking answer: " + selected);
-  // Check if the selected option is correct
+  let buttons = document.querySelectorAll('#options button');
   if (selected === currentQuiz[currentIndex].answer) {
     score++;
-    handleCorrectAnswer();
+    buttons.forEach(button => {
+      if (button.innerText.charAt(0) === currentQuiz[currentIndex].answer) {
+        button.style.backgroundColor = "green";  // Correct answer
+      }
+    });
+  } else {
+    buttons.forEach(button => {
+      if (button.innerText.charAt(0) === currentQuiz[currentIndex].answer) {
+        button.style.backgroundColor = "green";  // Show correct answer
+      }
+    });
   }
-
-  // Move to the next question
   currentIndex++;
   loadQuestion();
 }
+
 
 function handleCorrectAnswer() {
   correctAnswers++;
@@ -191,6 +204,7 @@ function endQuiz() {
   document.getElementById('quiz-container').style.display = 'none';
   document.getElementById('end-screen').innerHTML = `
     <h2>Time's up! Your score: ${score}</h2>
+    <h3>Correct Answers: ${correctAnswers}</h3>
     <button onclick="retryQuiz()">Retry</button>
     <button onclick="goToMainMenu()">Main Menu</button>
     <button onclick="saveScore()">Save Score</button>
