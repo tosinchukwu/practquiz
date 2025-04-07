@@ -1,6 +1,6 @@
 {
   "name": "practquiz",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Python quiz app for learning and testing Python knowledge interactively",
   "main": "script.js",
   "scripts": {
@@ -35,5 +35,3 @@
     "practquiz": "./start.js"
   }
 }
-
-
