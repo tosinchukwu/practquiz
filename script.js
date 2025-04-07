@@ -97,6 +97,10 @@ const quizData = {
 ]
 };
 
+const { startQuiz, checkAnswer } = require('practquiz');
+
+startQuiz();
+checkAnswer('A');
 let currentQuiz = [];
 let currentIndex = 0;
 let score = 0;
