@@ -29,7 +29,7 @@ const quizData = {
         { "question": "Which method returns the index of an item in a list?", "options": ["A) locate()", "B) find()", "C) index()"], "answer": "C" },
         { "question": "Which of the following is a Python boolean value?", "options": ["A) 1", "B) True", "C) truthy"], "answer": "B" },
         { "question": "Which of these is NOT a Python keyword?", "options": ["A) yield", "B) switch", "C) global"], "answer": "B" },
-        { "question": "What does `int('10') + int('20')` return?", "options": ["A) '1020'", "B) 30", "C) '30'"], "answer": "B" }
+        { "question": "What does `int('10') + int('20')` return?", "options": ["A) '1020'", "B) 30", "C) '30'"], "answer": "B" },
     ],
     "Intermediate": [
         { "question": "Which statement is used to handle exceptions?", "options": ["A) try", "B) catch", "C) error"], "answer": "A" },
@@ -61,7 +61,7 @@ const quizData = {
     { "question": "Which module provides support for mathematical operations?", "options": ["A) math", "B) numbers", "C) calc"], "answer": "A" },
     { "question": "Which of these is used to create a set?", "options": ["A) {}", "B) set()", "C) []"], "answer": "B" },
     { "question": "Which of these functions creates a tuple?", "options": ["A) list()", "B) set()", "C) tuple()"], "answer": "C" },
-    { "question": "Which keyword is used for inheritance in Python?", "options": ["A) extends", "B) inherits", "C) class"], "answer": "C" }
+    { "question": "Which keyword is used for inheritance in Python?", "options": ["A) extends", "B) inherits", "C) class"], "answer": "C" },
     ],
     "Advanced":
         { "question": "Which of these is NOT a Python web framework?", "options": ["A) Flask", "B) Django", "C) Spring"], "answer": "C" },
@@ -93,7 +93,7 @@ const quizData = {
     { "question": "Which statement is True about Python memory management?", "options": ["A) Python has manual garbage collection", "B) Python has automatic garbage collection", "C) Python does not manage memory"], "answer": "B" },
     { "question": "Which function is used to serialize Python objects?", "options": ["A) save()", "B) pickle.dump()", "C) json.convert()"], "answer": "B" },
     { "question": "Which of these is NOT a valid Python variable name?", "options": ["A) _var", "B) 2var", "C) var_2"], "answer": "B" },
-    { "question": "What is the correct way to write a list comprehension?", "options": ["A) [x for x in range(10)]", "B) {x for x in range(10)}", "C) (x for x in range(10))"], "answer": "A" }
+    { "question": "What is the correct way to write a list comprehension?", "options": ["A) [x for x in range(10)]", "B) {x for x in range(10)}", "C) (x for x in range(10))"], "answer": "A" },
     ]
 };
 
