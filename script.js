@@ -63,7 +63,7 @@ const quizData = {
     { "question": "Which of these functions creates a tuple?", "options": ["A) list()", "B) set()", "C) tuple()"], "answer": "C" },
     { "question": "Which keyword is used for inheritance in Python?", "options": ["A) extends", "B) inherits", "C) class"], "answer": "C" },
     ],
-    "Advanced":
+    "Advanced": [
         { "question": "Which of these is NOT a Python web framework?", "options": ["A) Flask", "B) Django", "C) Spring"], "answer": "C" },
     { "question": "What does `@staticmethod` do?", "options": ["A) Defines a static method", "B) Creates a private method", "C) Declares a global function"], "answer": "A" },
     { "question": "Which method sorts a list in-place?", "options": ["A) sorted()", "B) sort()", "C) order()"], "answer": "B" },
@@ -94,7 +94,7 @@ const quizData = {
     { "question": "Which function is used to serialize Python objects?", "options": ["A) save()", "B) pickle.dump()", "C) json.convert()"], "answer": "B" },
     { "question": "Which of these is NOT a valid Python variable name?", "options": ["A) _var", "B) 2var", "C) var_2"], "answer": "B" },
     { "question": "What is the correct way to write a list comprehension?", "options": ["A) [x for x in range(10)]", "B) {x for x in range(10)}", "C) (x for x in range(10))"], "answer": "A" },
-    ]
+]
 };
 
 let currentQuiz = [];
@@ -104,7 +104,6 @@ let correctAnswers = 0;
 let timer;
 let timeLeft = 300; // Set the timer to 5 minutes (300 seconds)
 let isTimerActive = false;
-const totalQuestions = 30; // This can be dynamically set based on the quiz level
 
 function startQuiz(level) {
     // Initialize the quiz based on the selected difficulty level
@@ -177,7 +176,8 @@ function handleCorrectAnswer() {
 }
 
 function updateProgressBar() {
-    const percent = Math.min(((currentIndex + 1) / totalQuestions) * 100, 100);  // Calculate percentage based on 32 questions
+    const totalQuestions = currentQuiz.length; // Dynamically set total questions based on quiz level
+    const percent = Math.min(((currentIndex + 1) / totalQuestions) * 100, 100);  // Calculate percentage based on actual questions
     document.getElementById("progress-bar").style.width = percent + "%";  // Update the progress bar width
     document.getElementById("progress-text").textContent = `${currentIndex + 1} / ${totalQuestions} answered`;  // Update the text with the number of answered questions
 }
