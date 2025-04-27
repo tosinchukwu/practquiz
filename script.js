@@ -23,7 +23,7 @@ const quizData = {
         { "question": "Which data type represents a sequence of characters?", "options": ["A) List", "B) String", "C) Tuple"], "answer": "B" },
         { "question": "Which method splits a string into a list?", "options": ["A) break()", "B) split()", "C) slice()"], "answer": "B" },
         { "question": "Which of these is a valid Python identifier?", "options": ["A) 2variable", "B) _varName", "C) var-name"], "answer": "B" },
-        { "question": "How do you check if `x` is equal to `10`?", "options": ["A) x = 10", "B) x == 10", "C) x === 10"], "answer": "B" },
+        { "question": "How do you check if `x` is equal to `10`", "options": ["A) x = 10", "B) x == 10", "C) x === 10"], "answer": "B" },
         { "question": "What does `range(3)` return?", "options": ["A) [1, 2, 3]", "B) [0, 1, 2]", "C) (0, 1, 2, 3)"], "answer": "B" },
         { "question": "What is the result of `3 * 2 ** 3`?", "options": ["A) 24", "B) 18", "C) 48"], "answer": "A" },
         { "question": "Which method returns the index of an item in a list?", "options": ["A) locate()", "B) find()", "C) index()"], "answer": "C" },
